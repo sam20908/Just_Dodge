@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Xolonium-Regular.tres" type="DynamicFont" id=1]
+[ext_resource path="res://GameOver.gd" type="Script" id=2]
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.174
+anchor_right = 0.5
+anchor_bottom = 0.174
+margin_left = -94.0
+margin_top = -39.28
+margin_right = 94.0
+margin_bottom = 38.72
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerLabel" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -116.837
+margin_top = 270.231
+margin_right = 118.163
+margin_bottom = 348.231
+custom_fonts/font = ExtResource( 1 )
+text = "0s"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RetryButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.814
+anchor_right = 0.5
+anchor_bottom = 0.814
+margin_left = -134.0
+margin_top = -42.08
+margin_right = 134.0
+margin_bottom = 41.92
+custom_fonts/font = ExtResource( 1 )
+text = "Retry"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Message" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -203.5
+margin_top = -39.0
+margin_right = 203.5
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 1 )
+text = "Game Over!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="RetryButton" to="." method="_on_RetryButton_pressed"]

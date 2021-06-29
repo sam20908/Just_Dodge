@@ -8,15 +8,15 @@
 [ext_resource path="res://dodge_assets/art/enemySwimming_1.png" type="Texture" id=6]
 [ext_resource path="res://Mob.gd" type="Script" id=7]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 35.491
 height = 28.3188
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 6 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 1 ) ],
 "loop": true,
-"name": "swim",
+"name": "walk",
 "speed": 3.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
@@ -24,9 +24,9 @@ animations = [ {
 "name": "fly",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 2 ) ],
 "loop": true,
-"name": "walk",
+"name": "swim",
 "speed": 3.0
 } ]
 
@@ -38,7 +38,7 @@ script = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 0.222733 )
 rotation = 1.5708
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
@@ -49,4 +49,4 @@ animation = "walk"
 frame = 1
 playing = true
 
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="gone_off_screen"]

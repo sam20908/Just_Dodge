@@ -1,7 +1,7 @@
 extends Area2D
 
 
-signal hit
+signal player_hit
 
 
 export var speed = 200
@@ -48,5 +48,5 @@ func _process(delta):
 
 func _on_Player_body_entered(_body):
 	hide()
-	emit_signal("hit")
+	emit_signal("player_hit")
 	$CollisionShape2D.set_deferred("disabled", true)

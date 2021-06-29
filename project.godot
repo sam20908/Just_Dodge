@@ -21,8 +21,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot Test Game"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Start.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GlobalState="*res://GlobalState.gd"
 
 [display]
 
@@ -38,6 +42,7 @@ singletons=[ "res://git_api.gdnlib" ]
 [global]
 
 width=false
+autload=false
 
 [physics]
 
