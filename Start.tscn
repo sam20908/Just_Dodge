@@ -1,12 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Xolonium-Regular.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Start.gd" type="Script" id=2]
+[ext_resource path="res://Mob.tscn" type="PackedScene" id=3]
 
-[node name="Start" type="CanvasLayer"]
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 2.9187, -1.70639, 0, 0, 0, 0, 473.313, -7.05179, 0, 0, 0, 0, 476.877, 707.449, 0, 0, 0, 0, 4.7005, 698.54, 0, 0, 0, 0, 2.9187, -1.70639 )
+}
+
+[node name="Node" type="Node"]
 script = ExtResource( 2 )
+Mob = ExtResource( 3 )
 
-[node name="StartButton" type="Button" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StartButton" type="Button" parent="CanvasLayer"]
 anchor_left = 0.5
 anchor_top = 0.814
 anchor_right = 0.5
@@ -21,7 +30,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Message" type="Label" parent="."]
+[node name="Message" type="Label" parent="CanvasLayer"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -38,4 +47,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[node name="MobSpawnPath" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="MobSpawnPoint" type="PathFollow2D" parent="MobSpawnPath"]
+position = Vector2( 2.9187, -1.70639 )
+rotation = -0.0113632
+
+[node name="MobSpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="pressed" from="CanvasLayer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="timeout" from="MobSpawnTimer" to="." method="_on_MobSpawnTimer_timeout"]
