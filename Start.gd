@@ -3,6 +3,7 @@ extends Node
 export (PackedScene) var Mob
 
 func activate_game():
+	# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://InGame.tscn")
 
 func spawn_mob():

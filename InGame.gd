@@ -10,7 +10,8 @@ var score = 0
 
 func _ready():
 	$Player.start($Player.position)
-	$Player.connect("player_hit", self, "game_over")
+	# warning-ignore:return_value_discarded
+	$Player.connect("hit", self, "game_over")
 
 func begin_game():
 	$MobSpawnTimer.start()
@@ -40,6 +41,7 @@ func increment_time_text():
 
 func game_over():
 	global_state.score = score
+	# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://GameOver.tscn")
 
 

@@ -7,6 +7,7 @@ func _ready():
 	
 
 func restart():
+	# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://InGame.tscn")
 
 
