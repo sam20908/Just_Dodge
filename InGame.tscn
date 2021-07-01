@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Xolonium-Regular.tres" type="DynamicFont" id=1]
 [ext_resource path="res://InGame.gd" type="Script" id=2]
 [ext_resource path="res://Mob.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Xolonium-Regular_Small.tres" type="DynamicFont" id=5]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -35,10 +36,10 @@ anchor_left = 0.501
 anchor_top = 0.929
 anchor_right = 0.501
 anchor_bottom = 0.929
-margin_left = -117.317
-margin_top = -41.649
-margin_right = 117.683
-margin_bottom = 36.351
+margin_left = -237.48
+margin_top = -41.88
+margin_right = 236.52
+margin_bottom = 36.12
 custom_fonts/font = ExtResource( 1 )
 text = "0s"
 align = 1
@@ -66,6 +67,30 @@ rotation = -0.0113632
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 240, 368.832 )
 
+[node name="DifficultyLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.263
+anchor_right = 0.5
+anchor_bottom = 0.263
+margin_left = -237.0
+margin_top = -24.36
+margin_right = 237.0
+margin_bottom = 24.64
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.160784, 0.839216, 0.854902, 1 )
+text = "Easy"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DifficultyIncrementTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="DifficultyElapsedTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_MobSpawnTimer_timeout"]
 [connection signal="timeout" from="TimeTimer" to="." method="_on_TimeTimer_timeout"]
 [connection signal="timeout" from="StartDelayTimer" to="." method="_on_StartDelayTimer_timeout"]
+[connection signal="timeout" from="DifficultyIncrementTimer" to="." method="_on_DifficultyIncrementTimer_timeout"]
+[connection signal="timeout" from="DifficultyElapsedTimer" to="." method="_on_DifficultyElapsedTimer_timeout"]
