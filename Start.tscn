@@ -6,7 +6,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 2.9187, -1.70639, 0, 0, 0, 0, 473.313, -7.05179, 0, 0, 0, 0, 476.877, 707.449, 0, 0, 0, 0, 4.7005, 698.54, 0, 0, 0, 0, 2.9187, -1.70639 )
+"points": PoolVector2Array( 0, 0, 0, 0, 2.9187, -1.70639, 0, 0, 0, 0, 1024, -4.98304, 0, 0, 0, 0, 1023, 603, 0, 0, 0, 0, -4.02041, 599.975, 0, 0, 0, 0, 2.9187, -1.70639 )
 }
 
 [node name="Node" type="Node"]
@@ -48,6 +48,8 @@ __meta__ = {
 }
 
 [node name="MobSpawnPath" type="Path2D" parent="."]
+position = Vector2( -0.975773, 3.90942 )
+scale = Vector2( 1.00095, 0.985225 )
 curve = SubResource( 1 )
 
 [node name="MobSpawnPoint" type="PathFollow2D" parent="MobSpawnPath"]
