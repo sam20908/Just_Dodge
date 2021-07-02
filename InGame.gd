@@ -1,10 +1,10 @@
 extends CanvasLayer
 
 export (PackedScene) var Mob
-export var Time_Increment_Interval = 0.005
 
 onready var global_state = get_node('/root/GlobalState')
 onready var difficulty_increment_interval = $DifficultyIncrementTimer.wait_time
+onready var time_increment_interval = $TimeTimer.wait_time
 
 var time = 0
 var score = 0
@@ -24,14 +24,15 @@ func set_difficulty_text_post_impossible():
 	$DifficultyLabel.text = "Impossible (MAX)!"
 
 func increase_difficulty():
-	difficulty = clamp(difficulty + 1, 1, 5)
+	difficulty += 1
+	global_state.mob_min_speed += 25
+	global_state.mob_max_speed += 25
 	set_difficulty_color(difficulty)
+	$MobSpawnTimer.wait_time -= 0.5
 
 	if difficulty < 5:
 		difficulty_time_elapsed = -1
 		set_difficulty_text_pre_impossible(difficulty)
-
-		$MobSpawnTimer.wait_time = $MobSpawnTimer.wait_time - 0.5
 	else:
 		set_difficulty_text_post_impossible()
 		$DifficultyIncrementTimer.disconnect("timeout", self, "_on_DifficultyIncrementTimer_timeout")
@@ -47,15 +48,18 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	$Player.connect("hit", self, "game_over")
 
-	set_difficulty_color(difficulty)
-	# set_difficulty_text_pre_impossible(difficulty)
+	global_state.mob_min_speed = 150
+	global_state.mob_max_speed = 250
 
 func begin_game():
 	$MobSpawnTimer.start()
 	$TimeTimer.start()
 	$DifficultyIncrementTimer.start()
 	$DifficultyElapsedTimer.start()
+
+	set_difficulty_color(difficulty)
 	set_difficulty_text_pre_impossible(difficulty)
+	increment_time_text()
 
 func spawn_mob():
 	$MobSpawnPath/MobSpawnPoint.offset = randi()
@@ -64,19 +68,27 @@ func spawn_mob():
 	mob.connect("mob_gone_off_screen", self, "handle_mob_gone_off_screen")
 	add_child(mob)	
 	
-	var direction = $MobSpawnPath/MobSpawnPoint.rotation + PI / 2
-	direction += rand_range(-PI / 4, PI / 4)
+	# Try to make the monster travel towards the player, but move little to the sides to make it "fair"
+	var player_pos = $Player.position
+	var player_x = player_pos.x
+	var player_y = player_pos.y
+	var spawn_pos = $MobSpawnPath/MobSpawnPoint.position
+	var spawn_x = spawn_pos.x
+	var spawn_y = spawn_pos.y
+	
+	var radians_to_player = atan2(player_y - spawn_y, player_x - spawn_x)
+	radians_to_player += rand_range(-PI / 4.5, PI / 4.5)
 
 	mob.position = $MobSpawnPath/MobSpawnPoint.position
-	mob.rotation = direction
+	mob.rotation = radians_to_player
 	
-	mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
-	mob.linear_velocity = mob.linear_velocity.rotated(direction)
+	mob.linear_velocity = Vector2(rand_range(global_state.mob_min_speed, global_state.mob_max_speed), 0)
+	mob.linear_velocity = mob.linear_velocity.rotated(radians_to_player)
 
 
 func increment_time_text():
-	time += Time_Increment_Interval
-	$TimerLabel.text = "%.3fs" % time
+	time += time_increment_interval
+	$TimerLabel.text = "%ss" % time
 
 
 func game_over():

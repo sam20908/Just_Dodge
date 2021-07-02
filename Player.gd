@@ -17,14 +17,15 @@ func _ready():
 
 func _process(delta):
 	var velocity = Vector2()
-	
-	if Input.is_action_pressed("ui_up"):
+
+	# Support WASD as well as arrow keys
+	if Input.is_key_pressed(KEY_W) || Input.is_key_pressed(KEY_UP):
 		velocity.y -= 1
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_key_pressed(KEY_S) || Input.is_key_pressed(KEY_DOWN):
 		velocity.y += 1
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_key_pressed(KEY_A) || Input.is_key_pressed(KEY_LEFT):
 		velocity.x -= 1
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_key_pressed(KEY_D) || Input.is_key_pressed(KEY_RIGHT):
 		velocity.x += 1
 	
 	if velocity.length() > 0:
