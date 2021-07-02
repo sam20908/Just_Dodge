@@ -8,7 +8,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 2.9187, -1.70639, 0, 0, 0, 0, 473.313, -7.05179, 0, 0, 0, 0, 476.877, 707.449, 0, 0, 0, 0, 4.7005, 698.54, 0, 0, 0, 0, 2.9187, -1.70639 )
+"points": PoolVector2Array( 0, 0, 0, 0, 2.9187, -1.70639, 0, 0, 0, 0, 1022.15, -2.1955, 0, 0, 0, 0, 1025.71, 310.626, 0, 0, 0, 0, 1025.71, 707.939, 0, 0, 0, 0, 4.7005, 698.54, 0, 0, 0, 0, 2.9187, -1.70639 )
 }
 
 [node name="InGame" type="CanvasLayer"]
@@ -57,14 +57,16 @@ one_shot = true
 autostart = true
 
 [node name="MobSpawnPath" type="Path2D" parent="."]
+position = Vector2( 0, -1.12443 )
+scale = Vector2( 1, 0.840548 )
 curve = SubResource( 1 )
 
 [node name="MobSpawnPoint" type="PathFollow2D" parent="MobSpawnPath"]
 position = Vector2( 2.9187, -1.70639 )
-rotation = -0.0113632
+rotation = -0.000479822
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 240, 368.832 )
+position = Vector2( 508.833, 335.082 )
 
 [node name="DifficultyLabel" type="Label" parent="."]
 anchor_left = 0.5
@@ -84,7 +86,7 @@ __meta__ = {
 }
 
 [node name="DifficultyIncrementTimer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 5.0
 
 [node name="DifficultyElapsedTimer" type="Timer" parent="."]
 

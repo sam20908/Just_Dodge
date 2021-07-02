@@ -10,6 +10,7 @@ var time = 0
 var score = 0
 var difficulty = 1
 var difficulty_time_elapsed = 0
+var max_miss_radians = PI / 4
 
 
 func set_difficulty_color(difficulty_int):
@@ -27,6 +28,7 @@ func increase_difficulty():
 	difficulty += 1
 	global_state.mob_min_speed += 25
 	global_state.mob_max_speed += 25
+	max_miss_radians -= PI / 12
 	set_difficulty_color(difficulty)
 	$MobSpawnTimer.wait_time -= 0.5
 
@@ -77,7 +79,7 @@ func spawn_mob():
 	var spawn_y = spawn_pos.y
 	
 	var radians_to_player = atan2(player_y - spawn_y, player_x - spawn_x)
-	radians_to_player += rand_range(-PI / 4.5, PI / 4.5)
+	radians_to_player += rand_range(-max_miss_radians, max_miss_radians)
 
 	mob.position = $MobSpawnPath/MobSpawnPoint.position
 	mob.rotation = radians_to_player
