@@ -32,13 +32,13 @@ __meta__ = {
 
 [node name="Message" type="Label" parent="CanvasLayer"]
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.232
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.232
 margin_left = -203.5
-margin_top = -79.5
+margin_top = -79.7
 margin_right = 203.5
-margin_bottom = 79.5
+margin_bottom = 79.3
 custom_fonts/font = ExtResource( 1 )
 text = "JUST
 DODGE!"
@@ -54,7 +54,7 @@ curve = SubResource( 1 )
 
 [node name="MobSpawnPoint" type="PathFollow2D" parent="MobSpawnPath"]
 position = Vector2( 2.9187, -1.70639 )
-rotation = -0.0113632
+rotation = -0.00320899
 
 [node name="MobSpawnTimer" type="Timer" parent="."]
 wait_time = 0.5
