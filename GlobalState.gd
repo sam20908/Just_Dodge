@@ -1,6 +1,6 @@
 extends Node
 
-var score = 0
+var time_survived = 0
 var mob_min_speed = 150
 var mob_max_speed = 250
 

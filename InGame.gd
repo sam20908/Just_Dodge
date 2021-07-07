@@ -82,6 +82,6 @@ func increment_time_text():
 
 
 func game_over():
-	global_state.score = time
+	global_state.time_survived = time
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://GameOver.tscn")

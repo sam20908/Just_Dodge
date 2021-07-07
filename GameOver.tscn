@@ -3,71 +3,66 @@
 [ext_resource path="res://Xolonium-Regular.tres" type="DynamicFont" id=1]
 [ext_resource path="res://GameOver.gd" type="Script" id=2]
 
-[node name="GameOver" type="CanvasLayer"]
+[node name="GameOver" type="Node"]
 script = ExtResource( 2 )
 
-[node name="ScoreLabel" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.174
-anchor_right = 0.5
-anchor_bottom = 0.174
-margin_left = -94.0
-margin_top = -39.28
-margin_right = 94.0
-margin_bottom = 38.72
-custom_fonts/font = ExtResource( 1 )
-text = "0"
-align = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/margin_right = 80
+custom_constants/margin_top = 80
+custom_constants/margin_left = 80
+custom_constants/margin_bottom = 80
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TimerLabel" type="Label" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -116.837
-margin_top = 270.231
-margin_right = 118.163
-margin_bottom = 348.231
-custom_fonts/font = ExtResource( 1 )
-text = "0s"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+margin_left = 80.0
+margin_top = 80.0
+margin_right = 944.0
+margin_bottom = 520.0
 
-[node name="RetryButton" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 0.814
-anchor_right = 0.5
-anchor_bottom = 0.814
-margin_left = -134.0
-margin_top = -42.08
-margin_right = 134.0
-margin_bottom = 41.92
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+margin_right = 25.0
+margin_bottom = 440.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+margin_left = 29.0
+margin_right = 835.0
+margin_bottom = 440.0
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 806.0
+margin_bottom = 78.0
+custom_fonts/font = ExtResource( 1 )
+text = "You Surived 0 Seconds!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 82.0
+margin_right = 806.0
+margin_bottom = 352.0
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 356.0
+margin_right = 806.0
+margin_bottom = 440.0
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/CenterContainer"]
+margin_left = 305.0
+margin_right = 500.0
+margin_bottom = 84.0
 custom_fonts/font = ExtResource( 1 )
 text = "Retry"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Message" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -203.5
-margin_top = -39.0
-margin_right = 203.5
-margin_bottom = 39.0
-custom_fonts/font = ExtResource( 1 )
-text = "Game Over!"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+margin_left = 839.0
+margin_right = 864.0
+margin_bottom = 440.0
+size_flags_horizontal = 3
 
-[connection signal="pressed" from="RetryButton" to="." method="_on_RetryButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/CenterContainer/RetryButton" to="." method="restart"]

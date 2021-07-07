@@ -74,6 +74,8 @@ position = Vector2( 509.594, 290.433 )
 curve = SubResource( 1 )
 
 [node name="MobSpawnPoint" type="PathFollow2D" parent="MobSpawnPath"]
+position = Vector2( 1029.28, -2.96985 )
+rotation = 1.56789
 
 [node name="DifficultyIncrementTimer" type="Timer" parent="."]
 wait_time = 5.0
