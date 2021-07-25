@@ -78,7 +78,7 @@ position = Vector2( 1029.28, -2.96985 )
 rotation = 1.56789
 
 [node name="DifficultyIncrementTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 15.0
 
 [node name="MobSpawnTimer" type="Timer" parent="."]
 wait_time = 2.51
